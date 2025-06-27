@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: trend-app
-          image: 380561001200.dkr.ecr.us-east-1.amazonaws.com/dilip/guvi:33
+          image: kdilipkumar/trend:12
           ports:
             - containerPort: 80
           livenessProbe:
