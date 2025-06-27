@@ -49,8 +49,8 @@ pipeline {
                         --project "Guvi-TrendStore" \
                         --scan Guvi-TrendStore \
                         --out dependency-check-reports \
-                        --format "HTML" \
-                        --data /usr/share/dependency-check/data
+                        --format "ALL" \
+                        --data /mnt/data/dep-check-data
                     '''
                     sh 'chown -R jenkins:jenkins dependency-check-reports'
                     sh 'chmod 644 dependency-check-reports/*.xml'
@@ -123,7 +123,6 @@ pipeline {
                 }
             }
         }
-
     }
 
     post {
