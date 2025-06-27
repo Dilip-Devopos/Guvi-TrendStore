@@ -49,8 +49,8 @@ pipeline {
                         --project "Guvi-TrendStore" \
                         --scan Guvi-TrendStore \
                         --out dependency-check-reports \
-                        --format "ALL" \
-                        --data /mnt/data/dep-check-data
+                        --format "HTML" \
+                        --data /usr/share/dependency-check/data
                     '''
                     sh 'chown -R jenkins:jenkins dependency-check-reports'
                     sh 'chmod 644 dependency-check-reports/*.xml'
@@ -96,6 +96,34 @@ pipeline {
                 }
             }
         }
+
+        stage('Update K8S manifest & push to Repo') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'fef7e074-f534-481f-88fb-91e677c88be9', 
+                    usernameVariable: 'GIT_USERNAME', 
+                    passwordVariable: 'GIT_PASSWORD'
+                )]) {
+                    sh '''
+                        echo "Cloning manifest repo..."
+                        git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Dilip-Devopos/Guvi-TrendStore.git
+                        cd Guvi-TrendStore
+
+                        echo "Updating image tag in deployment.yml..."
+                        sed -i "s|image: kdilipkumar/trend:.*|image: kdilipkumar/trend:${BUILD_NUMBER}|" deployment.yml
+                        cat deploy.yaml
+
+                        git config user.email "jenkins@gamil.com"
+                        git config user.name "Jenkins CI"
+
+                        git add deployment.yml
+                        git commit -m "Updated image tag to v${BUILD_NUMBER} via Jenkins pipeline"
+                        git push origin main
+                    '''
+                }
+            }
+        }
+
     }
 
     post {
