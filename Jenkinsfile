@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'kdilipkumar/jenkins-agent:v19'
-            args '--user root -v /var/run/docker.sock:/var/run/docker.sock -v /var/jenkins_home/dep-check-data:/usr/share/dependency-check/data'
+            args '--user root -v /var/run/docker.sock:/var/run/docker.sock -v /mnt/data/dep-check-data:/mnt/data/dep-check-data'
         }
     }
 
