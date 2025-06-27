@@ -8,7 +8,6 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "kdilipkumar/trend:v${BUILD_NUMBER}"
-
     }
 
     stages {
@@ -96,7 +95,8 @@ pipeline {
                     }
                 }
             }
-       }
+        }
+    }
 
     post {
         success {
@@ -117,4 +117,3 @@ pipeline {
         }
     }
 }
-
