@@ -105,6 +105,10 @@ pipeline {
                     passwordVariable: 'GIT_PASSWORD'
                 )]) {
                     sh '''
+                        cd /home/ubuntu
+                        pwd
+                        git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Dilip-Devopos/Guvi-TrendStore.git
+                        pwd
                         echo "Updating image tag in deployment.yml..."
                         sed -i "s|image: kdilipkumar/trend:.*|image: kdilipkumar/trend:${BUILD_NUMBER}|" deployment.yml
                         cat deployment.yml
