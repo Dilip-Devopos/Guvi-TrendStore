@@ -105,10 +105,6 @@ pipeline {
                     passwordVariable: 'GIT_PASSWORD'
                 )]) {
                     sh '''
-                        echo "Cloning manifest repo..."
-                        git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Dilip-Devopos/Guvi-TrendStore.git
-                        cd Guvi-TrendStore
-
                         echo "Updating image tag in deployment.yml..."
                         sed -i "s|image: kdilipkumar/trend:.*|image: kdilipkumar/trend:${BUILD_NUMBER}|" deployment.yml
                         cat deploy.yaml
