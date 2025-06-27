@@ -50,7 +50,7 @@ pipeline {
                         --scan Guvi-TrendStore \
                         --out dependency-check-reports \
                         --format "ALL" \
-                        --data /usr/share/dependency-check/data
+                        --data /mnt/data/dep-check-data
                     '''
                     sh 'chown -R jenkins:jenkins dependency-check-reports'
                     sh 'chmod 644 dependency-check-reports/*.xml'
