@@ -7,15 +7,14 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "guvi-project-1"
-        VERSION = "${env.BUILD_NUMBER}"
-        REGISTRY_CREDENTIALS = credentials('docker-cred')
+        DOCKER_IMAGE = "kdilipkumar/trend:v${BUILD_NUMBER}"
+
     }
 
     stages {
         stage('Cleanup') {
             steps {
-                sh 'rm -rf Guvi-Project-1 || true'
+                sh 'rm -rf Guvi-TrendStore || true'
             }
         }
 
@@ -23,20 +22,20 @@ pipeline {
             steps {
                 sh '''
                     echo "Cloning repository..."
-                    git clone https://github.com/Dilip-Devopos/Guvi-Project-1.git
+                    git clone https://github.com/Dilip-Devopos/Guvi-TrendStore.git
                 '''
             }
-        }
+        }   
 
         stage('Static Code Analysis') {
             environment {
-                SONAR_URL = "http://18.61.24.207:9000"
+                SONAR_URL = "http://44.248.148.60:9000"
             }
             steps {
                 withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
                     sh '''
-                        cd Guvi-Project-1
-                        sonar-scanner -Dsonar.projectKey=Guvi-Project-1-prod -Dsonar.sources=. -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_AUTH_TOKEN}
+                        cd Guvi-TrendStore
+                        sonar-scanner -Dsonar.projectKey=Guvi-TrendStore -Dsonar.sources=. -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_AUTH_TOKEN}
                     '''
                 }
             }    
@@ -48,10 +47,10 @@ pipeline {
                     sh '''
                         mkdir -p dependency-check-reports
                         /opt/dependency-check/bin/dependency-check.sh \
-                        --project "Guvi-Project-1" \
-                        --scan Guvi-Project-1 \
+                        --project "Guvi-TrendStore" \
+                        --scan Guvi-TrendStore \
                         --out dependency-check-reports \
-                        --format "ALL" \
+                        --format "HTML" \
                         --data /usr/share/dependency-check/data
                     '''
                     sh 'chown -R jenkins:jenkins dependency-check-reports'
@@ -62,19 +61,13 @@ pipeline {
             }
         }
 
-        stage('Build & Tag') {
-            steps {
-                dir('Guvi-Project-1') {
-                    sh "./build.sh ${IMAGE_NAME} ${VERSION} ${BRANCH_NAME}"
-                }
+        stage('Build Docker Image') {
+            environment {
+                DOCKERFILE_LOCATION = "Guvi-TrendStore/Dockerfile"
             }
-        }
-        
-        stage('Prepare Docker Image Name') {
             steps {
                 script {
-                    def repo = (env.BRANCH_NAME == "main") ? "kdilipkumar/prod" : "kdilipkumar/dev"
-                    env.dockerimage = "${repo}:${VERSION}"
+                    sh 'cd Guvi-TrendStore && docker build -t ${DOCKER_IMAGE} .'
                 }
             }
         }
@@ -91,18 +84,18 @@ pipeline {
             }
         }
 
-        stage('Push to Docker Hub') {
+        stage('Push Docker Image') {
+            environment {
+                REGISTRY_CREDENTIALS = credentials('docker-cred')
+            }
             steps {
                 script {
-                    def repo = (env.BRANCH_NAME == "main") ? "kdilipkumar/prod" : "kdilipkumar/dev"
-                    def dockerimage = "${repo}:${VERSION}"
-
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-cred') {
-                        sh "docker push ${dockerimage}"
+                    def dockerImage = docker.image("${DOCKER_IMAGE}")
+                    docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+                        dockerImage.push()
                     }
                 }
             }
-        }
     }
 
     post {
