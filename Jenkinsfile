@@ -78,7 +78,7 @@ pipeline {
                     sh '''
                         echo "Running Trivy vulnerability scan..."
                         trivy --version
-                        trivy image --severity HIGH,CRITICAL --format table -o trivy-report.html ${dockerimage}
+                        trivy image --severity HIGH,CRITICAL --format table -o trivy-report.html ${DOCKER_IMAGE}
                     '''
                 }
             }
@@ -117,3 +117,4 @@ pipeline {
         }
     }
 }
+
