@@ -119,7 +119,7 @@ pipeline {
                         git add deployment.yml
                         git commit -m "Updated image tag to v${BUILD_NUMBER} via Jenkins pipeline"
                         git push origin main
-                        sudo rm -rf Guvi-TrendStore
+                        rm -rf Guvi-TrendStore
                     '''
                 }
             }
