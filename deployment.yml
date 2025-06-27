@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: trend-app
-          image: kdilipkumar/trend:15
+          image: kdilipkumar/trend:16
           ports:
             - containerPort: 80
           livenessProbe:
