@@ -107,11 +107,9 @@ pipeline {
                     sh '''
                         echo "Updating image tag in deployment.yml..."
                         sed -i "s|image: kdilipkumar/trend:.*|image: kdilipkumar/trend:${BUILD_NUMBER}|" deployment.yml
-                        cat deploy.yaml
-
+                        cat deployment.yml
                         git config user.email "jenkins@gamil.com"
                         git config user.name "Jenkins CI"
-
                         git add deployment.yml
                         git commit -m "Updated image tag to v${BUILD_NUMBER} via Jenkins pipeline"
                         git push origin main
