@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'kdilipkumar/jenkins-agent:v19'
-            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    agent any
 
     environment {
         GIT_REPO = 'https://github.com/Dilip-Devopos/Guvi-TrendStore.git'
@@ -17,16 +12,40 @@ pipeline {
             }
         }
 
-                stage('Deploy to Kubernetes') {
+        stage('Deploy to Kubernetes') {
             steps {
                 script {
                     sh '''
-                        pwd
+                        set -euxo pipefail
                         cd deployment_pipeline
-                        pwd
-                        ls -l
-                        chmod +x deploy-to-eks.sh
-                        ./deploy-to-eks.sh
+
+                        NAMESPACE=default
+                        DEPLOYMENT_NAME=trend-app-deployment
+                        SERVICE_NAME=trend-app-service
+                        DEPLOYMENT_YAML=deployment.yml
+                        SERVICE_YAML=service.yml
+
+                        echo "Checking if deployment '$DEPLOYMENT_NAME' exists..."
+                        if kubectl get deployment "$DEPLOYMENT_NAME" -n "$NAMESPACE" &> /dev/null; then
+                            echo "Deployment '$DEPLOYMENT_NAME' exists. Deleting it..."
+                            kubectl delete deployment "$DEPLOYMENT_NAME" -n "$NAMESPACE"
+                            sleep 5
+                        else
+                            echo "Deployment '$DEPLOYMENT_NAME' does not exist. Skipping delete."
+                        fi
+
+                        echo "Applying deployment YAML..."
+                        kubectl apply -f "$DEPLOYMENT_YAML" -n "$NAMESPACE"
+
+                        echo "Checking if service '$SERVICE_NAME' exists..."
+                        if kubectl get service "$SERVICE_NAME" -n "$NAMESPACE" &> /dev/null; then
+                            echo "Service '$SERVICE_NAME' exists. Skipping apply."
+                        else
+                            echo "Service '$SERVICE_NAME' does not exist. Applying service YAML..."
+                            kubectl apply -f "$SERVICE_YAML" -n "$NAMESPACE"
+                        fi
+
+                        echo "✅ Deployment complete."
                     '''
                 }
             }
@@ -39,7 +58,6 @@ pipeline {
                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: "Good news!\n\nThe Jenkins job '${env.JOB_NAME}' completed successfully.\nBuild URL: ${env.BUILD_URL}",
                 to: "dilipbca99@gmail.com"
-                
             )
         }
 
