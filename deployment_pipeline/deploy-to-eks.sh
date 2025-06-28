@@ -44,18 +44,3 @@ install_eksctl() {
 install_aws_cli
 install_kubectl
 install_eksctl
-
-# Set cluster name and region
-CLUSTER_NAME="your-cluster-name"
-REGION="your-region"  # e.g., us-east-1
-
-# Update kubeconfig
-echo "🔗 Connecting to EKS cluster: $CLUSTER_NAME..."
-aws eks update-kubeconfig --region "$REGION" --name "$CLUSTER_NAME"
-
-# Apply manifests
-echo "🚀 Deploying Kubernetes manifests..."
-kubectl apply -f deployment.yml
-kubectl apply -f service.yml
-
-echo "✅ Deployment complete."
