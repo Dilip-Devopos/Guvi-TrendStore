@@ -134,6 +134,9 @@ pipeline {
                 to: "dilipbca99@gmail.com",
                 attachmentsPattern: "trivy-report.html,dependency-check-reports/dependency-check-report.html"
             )
+            script {
+                build job: 'Deployment_pipeline'
+            }
         }
 
         failure {
