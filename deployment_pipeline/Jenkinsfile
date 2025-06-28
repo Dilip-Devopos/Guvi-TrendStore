@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         GIT_REPO = 'https://github.com/Dilip-Devopos/Guvi-TrendStore.git'
+        KUBECONFIG = '/var/lib/jenkins/.kube/config'
     }
 
     stages {
