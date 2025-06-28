@@ -9,7 +9,8 @@ install_aws_cli() {
     if ! command -v aws &> /dev/null; then
         echo "🔧 Installing AWS CLI..."
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-        unzip -q awscliv2.zip
+        rm -rf aws
+        unzip -o -q awscliv2.zip
         ./aws/install -y
         rm -rf awscliv2.zip aws
     else
