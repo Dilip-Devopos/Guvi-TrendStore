@@ -10,7 +10,7 @@ install_aws_cli() {
         echo "🔧 Installing AWS CLI..."
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         unzip -q awscliv2.zip
-        sudo ./aws/install
+        ./aws/install
         rm -rf awscliv2.zip aws
     else
         echo "✅ AWS CLI already installed."
@@ -23,7 +23,7 @@ install_kubectl() {
         echo "🔧 Installing kubectl..."
         curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
         chmod +x kubectl
-        sudo mv kubectl /usr/local/bin/
+        mv kubectl /usr/local/bin/
     else
         echo "✅ kubectl already installed."
     fi
@@ -34,7 +34,7 @@ install_eksctl() {
     if ! command -v eksctl &> /dev/null; then
         echo "🔧 Installing eksctl..."
         curl --silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-        sudo mv /tmp/eksctl /usr/local/bin
+        mv /tmp/eksctl /usr/local/bin
     else
         echo "✅ eksctl already installed."
     fi
