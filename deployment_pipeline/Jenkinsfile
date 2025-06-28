@@ -47,14 +47,14 @@ pipeline {
                         fi
                         
                         echo "App   lying deployment YAML..."
-                        kubectl apply -f "$DEPLOYMENT_YAML" -n "$NAMESPACE"
+                        kubectl apply -f "$DEPLOYMENT_YAML" -n "$NAMESPACE" || { echo "❌ Failed to apply deployment YAML"; exit 1; }
 
                         echo "Checking if service '$SERVICE_NAME' exists..."
-                        if kubectl get service "$SERVICE_NAME" -n "$NAMESPACE" &> /dev/null; then
-                            echo "Service '$SERVICE_NAME' exists. Skipping creation."
+                        if kubectl get service "$SERVICE_NAME" -n "$NAMESPACE"; then
+                            echo "Service '$SERVICE_NAME' exists. Skipping creation."   
                         else
                             echo "Service '$SERVICE_NAME' does not exist. Creating service..."
-                            kubectl apply -f "$SERVICE_YAML" -n "$NAMESPACE"
+                            kubectl apply -f "$SERVICE_YAML" -n "$NAMESPACE" || { echo "❌ Failed to apply service YAML"; exit 1; }
                         fi
 
                         echo "✅ Deployment complete."
