@@ -21,7 +21,10 @@ pipeline {
             steps {
                 script {
                     sh '''
+                        pwd
                         cd deployment_pipeline
+                        pwd
+                        ls -l
                         chmod +x deploy-to-eks.sh
                         deploy-to-eks.sh
                     '''
