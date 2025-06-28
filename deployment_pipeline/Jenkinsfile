@@ -17,8 +17,8 @@ pipeline {
                 script {
                     sh '''
                         cd deployment_pipeline
-                        echo "Deploying to Kubernetes..."
-                        touch deployment.yaml
+                        chmod +x deploy-to-eks.sh
+                        ./deploy-to-eks.sh"
                     '''
                 }
             }
