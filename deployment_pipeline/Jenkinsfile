@@ -41,21 +41,20 @@ pipeline {
 
                         echo "Checking if deployment '$DEPLOYMENT_NAME' exists..."
                         if kubectl get deployment "$DEPLOYMENT_NAME" -n "$NAMESPACE" &> /dev/null; then
-                            echo "Deployment '$DEPLOYMENT_NAME' exists. Deleting it..."
+                            echo "Deployment '$DEPLOYMENT_NAME' exists. Deleting and reapplying..."
                             kubectl delete deployment "$DEPLOYMENT_NAME" -n "$NAMESPACE"
                             sleep 5
+                            kubectl apply -f "$DEPLOYMENT_YAML" -n "$NAMESPACE"
                         else
-                            echo "Deployment '$DEPLOYMENT_NAME' does not exist. Skipping delete."
+                            echo "Deployment '$DEPLOYMENT_NAME' does not exist. Creating new deployment..."
+                            kubectl apply -f "$DEPLOYMENT_YAML" -n "$NAMESPACE"
                         fi
-
-                        echo "Applying deployment YAML..."
-                        kubectl apply -f "$DEPLOYMENT_YAML" -n "$NAMESPACE"
 
                         echo "Checking if service '$SERVICE_NAME' exists..."
                         if kubectl get service "$SERVICE_NAME" -n "$NAMESPACE" &> /dev/null; then
-                            echo "Service '$SERVICE_NAME' exists. Skipping apply."
+                            echo "Service '$SERVICE_NAME' exists. Skipping creation."
                         else
-                            echo "Service '$SERVICE_NAME' does not exist. Applying service YAML..."
+                            echo "Service '$SERVICE_NAME' does not exist. Creating service..."
                             kubectl apply -f "$SERVICE_YAML" -n "$NAMESPACE"
                         fi
 
