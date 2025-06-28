@@ -3,8 +3,8 @@ set -e
 set -x
 
 # Set cluster name and region
-CLUSTER_NAME="your-cluster-name"
-REGION="your-region"  # e.g., us-east-1
+CLUSTER_NAME="trend-app"
+REGION="us-west-2"  # e.g., us-east-1
 
 # Update kubeconfig
 echo "🔗 Connecting to EKS cluster: $CLUSTER_NAME..."
