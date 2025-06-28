@@ -2,14 +2,6 @@
 set -e
 set -x
 
-# Set cluster name and region
-CLUSTER_NAME="trend-app"
-REGION="us-west-2"  # e.g., us-east-1
-
-# Update kubeconfig
-echo "🔗 Connecting to EKS cluster: $CLUSTER_NAME..."
-aws eks update-kubeconfig --region "$REGION" --name "$CLUSTER_NAME"
-
 NAMESPACE=default
 
 # Define your deployment and service names
