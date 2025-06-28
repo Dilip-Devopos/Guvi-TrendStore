@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        set -euxo pipefail
+                        #!/bin/bash
                         cd deployment_pipeline
 
                         NAMESPACE=default
