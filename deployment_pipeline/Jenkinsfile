@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        cd Guvi-TrendStore/deployment_pipeline
+                        cd deployment_pipeline
                         echo "Deploying to Kubernetes..."
                         touch deployment.yaml
                     '''
