@@ -4,6 +4,8 @@ set -e
 set -o pipefail
 set -x
 
+apt update -y
+apt install curl unzip -y
 # Function to check and install AWS CLI
 install_aws_cli() {
     if ! command -v aws &> /dev/null; then
