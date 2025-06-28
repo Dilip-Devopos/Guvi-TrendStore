@@ -18,7 +18,7 @@ pipeline {
                     sh '''
                         cd deployment_pipeline
                         chmod +x deploy-to-eks.sh
-                        ./deploy-to-eks.sh"
+                        ./deploy-to-eks.sh
                     '''
                 }
             }
