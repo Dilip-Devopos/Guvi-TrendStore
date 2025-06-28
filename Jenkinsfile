@@ -112,7 +112,7 @@ pipeline {
                         cd Guvi-TrendStore
                         ls -ltr
                         echo "Updating image tag in deployment.yml..."
-                        sed -i "s|image: kdilipkumar/trend:v.*|image: kdilipkumar/trend:v${BUILD_NUMBER}|" deployment.yml
+                        sed -i "s|image: kdilipkumar/trend:v.*|image: kdilipkumar/trend:v${BUILD_NUMBER}|" deployment_pipeline/deployment.yml
                         cat deployment.yml
                         git config user.email "jenkins@gamil.com"
                         git config user.name "Jenkins CI"
