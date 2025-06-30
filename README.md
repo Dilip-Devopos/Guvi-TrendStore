@@ -126,6 +126,7 @@ Service:
 📊 Monitoring & Observability:
 Installed Stack:
        Prometheus
+       
              http://affd41e4498f0407d9df8979564a579d-1629134265.us-west-2.elb.amazonaws.com:9090
 
         Grafana
