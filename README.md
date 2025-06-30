@@ -1,7 +1,7 @@
 # 🚀 DevOps Project: Trend App Deployment on AWS EKS
 
-🧠 Author: DilipKumar
-📬 Email Notifications Enabled: dilipbca99@gmail.com
+🧠 Author                       : DilipKumar
+📬 Email Notifications Enabled  : dilipbca99@gmail.com
 
 📚 Project Summary & CI/CD Workflow:
 
