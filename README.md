@@ -105,11 +105,8 @@ Deploy:
 Deployment:
 
        kind: Deployment
-       
        name: trend-app-deployment
-       
        replicas: 2
-       
        image: kdilipkumar/trend:v(tag)
        Probes: Readiness and Liveness configured
        Resources: Requests and limits set for CPU and memory
@@ -117,6 +114,7 @@ Deployment:
        kubectl apply -f deployment.yml
        
 Service:
+
       kind: Service
       name: trend-app-service
       type: LoadBalancer
@@ -125,10 +123,12 @@ Service:
       kubectl apply -f service.yml
 
 📎 Access WebApp: 
+
       http://a663570b339364482a86a9e6f3445b69-1151892002.us-west-2.elb.amazonaws.com
 
 📊 Monitoring & Observability:
 Installed Stack:
+
        Prometheus
        
              http://affd41e4498f0407d9df8979564a579d-1629134265.us-west-2.elb.amazonaws.com:9090
@@ -147,6 +147,7 @@ Monitors:
   Logs & alerting (Grafana dashboards)
 
 📁 Project Structure:
+
 Guvi-TrendStore/
 │
 ├── deployment_pipeline/
