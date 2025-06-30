@@ -103,9 +103,13 @@ Deploy:
 ☸️ Kubernetes Setup (EKS):
 
 Deployment:
+
        kind: Deployment
+       
        name: trend-app-deployment
+       
        replicas: 2
+       
        image: kdilipkumar/trend:v(tag)
        Probes: Readiness and Liveness configured
        Resources: Requests and limits set for CPU and memory
