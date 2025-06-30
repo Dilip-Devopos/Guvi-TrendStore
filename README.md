@@ -159,7 +159,7 @@ Guvi-TrendStore/
 Add screenshots of:
 Jenkins Job Console Output:
 
-      ![image](https://github.com/user-attachments/assets/edffd27f-dbc2-425e-b4bd-e92dc0e97299)
+  ![image](https://github.com/user-attachments/assets/edffd27f-dbc2-425e-b4bd-e92dc0e97299)
       ![image](https://github.com/user-attachments/assets/a52ba746-2a6a-4934-b623-85904e1e78b5)
       ![image](https://github.com/user-attachments/assets/b14c292d-2614-4031-b87c-f88257bf32f0)
 
