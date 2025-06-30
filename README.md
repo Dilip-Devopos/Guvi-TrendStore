@@ -8,7 +8,7 @@
 🧩 Project Overview:-
                   This project demonstrates end-to-end DevOps implementation by deploying a React-based application into a production-ready environment on AWS EKS using automated CI/CD pipelines. It integrates various industry-standard tools like Docker, Jenkins, Terraform, SonarQube, Trivy, Prometheus, and Grafana to handle everything from code build, scan, deployment, and monitoring.
 
-🔁 CI/CD Pipeline Flow (Visual Summary)
+🔁 CI/CD Pipeline Flow (Visual Summary):
 
 Dev ➝ Git Commit ➝ GitHub Webhook
     ➝ Jenkins CI (CLone, sonarqube-Scan, security-Scan, Build-image, Push-image, Update YAML (file in github))
