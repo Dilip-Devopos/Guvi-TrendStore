@@ -160,49 +160,49 @@ Add screenshots of:
 Jenkins Job Console Output:
 
   ![image](https://github.com/user-attachments/assets/edffd27f-dbc2-425e-b4bd-e92dc0e97299)
-      ![image](https://github.com/user-attachments/assets/a52ba746-2a6a-4934-b623-85904e1e78b5)
-      ![image](https://github.com/user-attachments/assets/b14c292d-2614-4031-b87c-f88257bf32f0)
+  ![image](https://github.com/user-attachments/assets/a52ba746-2a6a-4934-b623-85904e1e78b5)
+  ![image](https://github.com/user-attachments/assets/b14c292d-2614-4031-b87c-f88257bf32f0)
 
 Sonarqube Dashboard:
 
-      ![image](https://github.com/user-attachments/assets/214651d0-e3be-46a2-81e9-9e13b782c29f)
+  ![image](https://github.com/user-attachments/assets/214651d0-e3be-46a2-81e9-9e13b782c29f)
 
 EKS Cluster Dashboard:
 
-      ![image](https://github.com/user-attachments/assets/95d2e037-d811-4a97-a364-1a3415fb15ec)
+  ![image](https://github.com/user-attachments/assets/95d2e037-d811-4a97-a364-1a3415fb15ec)
       
 LoadBalancer:
 
-    ![image](https://github.com/user-attachments/assets/9b3060de-d4d8-4f93-9ab7-e28247dbb5a2)
+  ![image](https://github.com/user-attachments/assets/9b3060de-d4d8-4f93-9ab7-e28247dbb5a2)
 
 CloudWatch:
 
-    ![image](https://github.com/user-attachments/assets/34c5ef42-2e99-4135-a91e-8659778b1d4d)
-    ![image](https://github.com/user-attachments/assets/d17b83da-c009-4ab1-8e5a-c7994e3b6245)
+  ![image](https://github.com/user-attachments/assets/34c5ef42-2e99-4135-a91e-8659778b1d4d)
+  ![image](https://github.com/user-attachments/assets/d17b83da-c009-4ab1-8e5a-c7994e3b6245)
 
 Email:    
 
-     Success:
-    ![image](https://github.com/user-attachments/assets/be999577-ddeb-43c1-8141-ad862474a483)
+  Success:
+  ![image](https://github.com/user-attachments/assets/be999577-ddeb-43c1-8141-ad862474a483)
 
-     Failuer
-    ![image](https://github.com/user-attachments/assets/b25925ce-9905-4a32-96d7-32a886dfc5cc)
+  Failuer
+  ![image](https://github.com/user-attachments/assets/b25925ce-9905-4a32-96d7-32a886dfc5cc)
 
 Grafana Dashboard:
 
-      ![image](https://github.com/user-attachments/assets/ef41ead3-a9d6-4edc-b76a-4bb11266db65)
+  ![image](https://github.com/user-attachments/assets/ef41ead3-a9d6-4edc-b76a-4bb11266db65)
  
 Prometheus Targets:
 
-      ![image](https://github.com/user-attachments/assets/5642a4c9-17db-4cdf-b5f0-5d94ae5de424)
+  ![image](https://github.com/user-attachments/assets/5642a4c9-17db-4cdf-b5f0-5d94ae5de424)
 
 EC2 Machine cluster pods and service:
 
-      ![image](https://github.com/user-attachments/assets/fc25ece4-fc37-4e60-a849-eb376123dd7b)  
+  ![image](https://github.com/user-attachments/assets/fc25ece4-fc37-4e60-a849-eb376123dd7b)  
 
 Final deployed application:
 
-      ![image](https://github.com/user-attachments/assets/45f06eca-8307-4325-a06f-ed871afe49cf)
+  ![image](https://github.com/user-attachments/assets/45f06eca-8307-4325-a06f-ed871afe49cf)
 
 
 ✅ Final Status
